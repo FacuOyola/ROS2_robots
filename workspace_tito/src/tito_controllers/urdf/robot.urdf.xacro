@@ -4,7 +4,7 @@
 <visual>
   <origin xyz="0 0 0" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="file:///home/fac/Desktop/robot_diff_tesis.stl"
+      <mesh "package://mi_robot_description/meshes/robot_diff_tesis.stl"
             scale="0.01 0.01 0.01"/>
     </geometry>
   <material  name="blue">
