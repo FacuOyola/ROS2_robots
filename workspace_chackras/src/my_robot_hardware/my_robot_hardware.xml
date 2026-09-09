@@ -1,0 +1,7 @@
+<library path="my_robot_hardware">
+  <class name="my_robot_hardware/MiRobotHardware" 
+         type="my_robot_hardware::MiRobotHardware" 
+         base_class_type="hardware_interface::SystemInterface">
+    <description>Mi interfaz de hardware Modbus.</description>
+  </class>
+</library>

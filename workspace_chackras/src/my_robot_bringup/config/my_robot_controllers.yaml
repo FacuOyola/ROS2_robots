@@ -1,0 +1,49 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 10
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+    diff_drive_controller:
+      type: diff_drive_controller/DiffDriveController
+
+
+diff_drive_controller:
+  ros__parameters:
+    left_wheel_names:
+      - front_left_wheel_joint
+      - rear_left_wheel_joint
+
+    right_wheel_names:
+      - front_right_wheel_joint
+      - rear_right_wheel_joint
+
+    wheel_separation: 0.5
+    wheel_radius: 0.1
+
+    odom_frame_id: odom
+    base_frame_id: base_link
+
+    pose_covariance_diagonal: [0.001, 0.001, 0.001, 0.001, 0.001, 0.01]
+    twist_covariance_diagonal: [0.001, 0.001, 0.001, 0.001, 0.001, 0.01]
+    
+    publish_rate: 10.0
+
+    position_feedback: false  #no tomamos los pulsos de los encoders para calcular la odometria y las transformaciones. 
+    use_stamped_vel: true 
+    open_loop: true # estoy midiendo los ticks de los encoders, la odometria se realiza mediante los ticks.
+    enable_odom_tf: true # hago la transformacion entre odom y base_footprint
+    
+        # Recomendado: Agregar los marcos de velocidad de las ruedas
+    linear:
+      x:
+        has_velocity_limits: false
+        has_acceleration_limits: false
+    angular:
+      z:
+        has_velocity_limits: false
+        has_acceleration_limits: false
+    
+
+
