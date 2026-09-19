@@ -1,0 +1,90 @@
+<robot name="mi_robot">
+
+  <link name="base_footprint">
+<visual>
+  <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file:///home/fac/Desktop/robot_diff_tesis.stl"
+            scale="0.01 0.01 0.01"/>
+    </geometry>
+  <material  name="blue">
+  <color rgba="0.1 0.4 0.8 1.0"/>
+  </material>
+</visual>
+
+<collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file:///home/fac/Desktop/robot_diff_tesis.stl"
+            scale="0.01 0.01 0.01"/>
+    </geometry>
+  </collision>
+
+  <inertial>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <mass value="5.0"/>
+    <inertia ixx="0.1" ixy="0" ixz="0"
+             iyy="0.1" iyz="0"
+             izz="0.1"/>
+  </inertial>
+
+
+
+  </link>
+
+
+
+
+  <link name="left_wheel"/>
+  <link name="right_wheel"/>
+  
+    <!-- LiDAR -->
+  <link name="laser_link"/>
+
+  <joint name="laser_joint" type="fixed">
+    <parent link="base_footprint"/>
+    <child link="laser_link"/>
+    <!-- Ajusta estas coordenadas a la posición real del sensor -->
+    <origin xyz="0.15 0.0 0.10" rpy="0 0 0"/>
+  </joint>
+  
+
+  <joint name="left_wheel_joint" type="continuous">
+    <parent link="base_footprint"/>
+    <child link="left_wheel"/>
+     <origin xyz="0 0.11 0"/>
+    <axis xyz="0 1 0"/>
+  </joint>
+
+  <joint name="right_wheel_joint" type="continuous">
+    <parent link="base_footprint"/>
+    <child link="right_wheel"/>
+    <origin xyz="0 -0.11 0"/>
+    <axis xyz="0 1 0"/>
+  </joint>
+
+  <ros2_control name="RobotSystem" type="system">
+
+    <hardware>
+    <!-- comentario -->
+       <plugin>mi_robot_hardware/MiRobotHardware</plugin>
+     <!--<plugin>mock_components/GenericSystem</plugin> -->
+    </hardware>
+
+    <joint name="left_wheel_joint">
+    <command_interface name="velocity"/> 
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+
+    <joint name="right_wheel_joint">
+ <command_interface name="velocity"/> 
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+
+
+
+  </ros2_control>
+
+</robot>

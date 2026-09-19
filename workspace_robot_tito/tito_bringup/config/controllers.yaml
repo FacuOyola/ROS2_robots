@@ -1,0 +1,39 @@
+controller_manager:
+  ros__parameters:
+    cmd_vel_topic: "/cmd_vel"
+    update_rate: 50
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+    diff_drive_controller:
+      type: diff_drive_controller/DiffDriveController
+
+diff_drive_controller:
+  ros__parameters:
+    left_wheel_names: ["left_wheel_joint"]
+    right_wheel_names: ["right_wheel_joint"]
+
+    wheel_separation: 0.22
+    wheel_radius: 0.041
+
+    base_frame_id: base_footprint
+    odom_frame_id: odom
+
+    publish_rate: 50.0 #alto para que ande slamtoolbox
+
+    position_feedback: true  # tomamos los pulsos de los encoders para calcular la odometria y las transformaciones. 
+    use_stamped_vel: true 
+    open_loop: false # estoy midiendo los ticks de los encoders, la odometria se realiza mediante los ticks.
+    enable_odom_tf: true # hago la transformacion entre odom y base_footprint
+    
+        # Recomendado: Agregar los marcos de velocidad de las ruedas
+    linear:
+      x:
+        has_velocity_limits: false
+        has_acceleration_limits: false
+    angular:
+      z:
+        has_velocity_limits: false
+        has_acceleration_limits: false
+    

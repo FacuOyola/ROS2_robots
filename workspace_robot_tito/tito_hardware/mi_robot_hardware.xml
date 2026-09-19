@@ -1,0 +1,10 @@
+<library path="mi_robot_hardware">
+  <class
+      name="mi_robot_hardware/MiRobotHardware"
+      type="mi_robot_hardware::MiRobotHardware"
+      base_class_type="hardware_interface::SystemInterface">
+    <description>
+      Hardware de Mi Robot
+    </description>
+  </class>
+</library>
